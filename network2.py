@@ -172,3 +172,13 @@ def total_cost(self, data, lmbda, convert=False):
         cost += 0.5*(lmbda/len(data))*sum(
             np.linalg.norm(w)**2 for w in self.weights)
         return cost
+
+def save(self, filename):
+        """Save the neural network to the file ``filename``."""
+        data = {"sizes": self.sizes,
+                "weights": [w.tolist() for w in self.weights],
+                "biases": [b.tolist() for b in self.biases],
+                "cost": str(self.cost.__name__)}
+        f = open(filename, "w")
+        json.dump(data, f)
+        f.close()
