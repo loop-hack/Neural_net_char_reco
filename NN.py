@@ -36,14 +36,24 @@ class Network(object):
             else:
                 print(f"Epoch {j} complete")  
 
+<<<<<<< HEAD
     def update_mini_batch(self, mini_batch, eta):
+=======
+    def update_mini_batch(self, mini_batch, eta):   # here eta is learning rate 
+>>>>>>> 722930f (created new net start)
         nabla_b = [np.zeros(b.shape) for b in self.biases]
         nabla_w = [np.zeros(w.shape) for w in self.weights]
         for x, y in mini_batch:
             delta_nabla_b, delta_nabla_w = self.backprop(x, y)
+<<<<<<< HEAD
             nabla_b = [nb + dnb for nb, dnb in zip(nabla_b, delta_nabla_b)]
             nabla_w = [nw + dnw for nw, dnw in zip(nabla_w, delta_nabla_w)]
         self.weights = [w-(eta/len(mini_batch))*nw for w, nw in zip(self.weights, nabla_b)]
+=======
+            nabla_b = [nb + dnb for nb, dnb in zip(nabla_b, delta_nabla_b)]  # this creates tensor of all zeros having same size as the bias
+            nabla_w = [nw + dnw for nw, dnw in zip(nabla_w, delta_nabla_w)]
+        self.weights = [w-(eta/len(mini_batch))*nw for w, nw in zip(self.weights, nabla_b)] # here we are doing update , using gradient matrix and matrix of biases
+>>>>>>> 722930f (created new net start)
         self.biases = [b-(eta/len(mini_batch))*nb for b, nb in zip(self.biases, nabla_b)]
 
     def backprop(self, x, y):
