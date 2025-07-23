@@ -156,3 +156,19 @@ def accuracy(self, data, convert=False):
             results = [(np.argmax(self.feedforward(x)), y)
                         for (x, y) in data]
         return sum(int(x == y) for (x, y) in results)
+
+def total_cost(self, data, lmbda, convert=False):
+        """Return the total cost for the data set ``data``.  The flag
+        ``convert`` should be set to False if the data set is the
+        training data (the usual case), and to True if the data set is
+        the validation or test data.  See comments on the similar (but
+        reversed) convention for the ``accuracy`` method, above.
+        """
+        cost = 0.0
+        for x, y in data:
+            a = self.feedforward(x)
+            if convert: y = vectorized_result(y)
+            cost += self.cost.fn(a, y)/len(data)
+        cost += 0.5*(lmbda/len(data))*sum(
+            np.linalg.norm(w)**2 for w in self.weights)
+        return cost
