@@ -3,7 +3,7 @@ import gzip
 import numpy as np
 
 def load_data():
-    with gzip.open('C:\\Users\\godan\\Downloads\\mnist.pkl.gz', 'rb') as f:
+    with gzip.open('/home/the_programmer/Downloads/mnist.pkl.gz', 'rb') as f:
         training_data, validation_data, test_data = pickle.load(f, encoding='latin1')
     return training_data, validation_data, test_data
 
